@@ -1,4 +1,4 @@
-class ::profiles::puppet::master{
+class profiles::puppet::master{
 
   $file_defaults    = hiera_hash('file_defaults')
   $service_defaults = hiera_hash('service_defaults')
