@@ -24,6 +24,6 @@ class profiles::puppet::master{
          services         => $services,
          service_defaults => $service_defaults,}->
 
-  Class['::custom::profiles::puppet::master']  
+  Class['::profiles::puppet::master']  
 
 }
