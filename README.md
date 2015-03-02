@@ -9,7 +9,8 @@ Add profiles for for the pragmatic use
  - apache 
  - php
  - java
- - jenkins 
+ - jenkins
+ - etc
 
 ##Note
 - This is not a stand alone moudle , it is used in conjustion with the puppet moudles & bootscript.
