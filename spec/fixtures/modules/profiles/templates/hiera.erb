@@ -1,0 +1,19 @@
+---
+ :merge: deep
+
+ :backends:
+  - yaml
+
+ :hierarchy:
+  - "nodes/%{clientcert}"
+  - "osfamily/%{osfamily}"
+  - "osfamily/%{osfamily}/defaults"
+  - "osfamily/%{osfamily}/global"
+  - "virtual/%{virtual}"
+  - system/users
+  - defaults
+  - global
+
+ :yaml:
+  :datadir: /etc/puppet/data/%{environment}
+
