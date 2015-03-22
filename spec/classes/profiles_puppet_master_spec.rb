@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe 'profiles::puppet::master' do
 
+  include_context "hieradata"
+
  context 'Redhat/centos based system' do
     let :facts do
     {

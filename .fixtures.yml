@@ -1,0 +1,7 @@
+fixtures:
+  repositories:
+    custom: "git://github.com/dvadgama/custom_module"
+    data  : "git://github.com/dvadgama/puppet_data"
+
+  symlinks:
+    profiles: "#{source_dir}"
