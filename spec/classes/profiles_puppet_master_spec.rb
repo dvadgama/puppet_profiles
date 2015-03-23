@@ -36,6 +36,8 @@ describe 'profiles::puppet::master' do
       it { should contain_file('/etc/puppet/puppet.conf') }
     
       it { should contain_file('/etc/puppet/environments/test/environment.conf') }
+      
+      it { should contain_service('puppetmaster') }
 
   end
   
@@ -54,9 +56,7 @@ describe 'profiles::puppet::master' do
     it { should contain_class('custom::puppet::install').with_packages("puppet-server"=>{"ensure"=>"installed"}) }
 
     it { should contain_package('puppet-server') }
- 
-    it { should contain_service('puppetmaster') }
-
+    
 
   end
 
@@ -76,7 +76,6 @@ describe 'profiles::puppet::master' do
 
     it { should contain_package('puppetmaster') }
  
-    it { should contain_service('puppetmaster') }
 
   end
 
