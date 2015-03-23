@@ -1,0 +1,4 @@
+{
+ "name": "puppet-profiles"
+ ,"files": [ { "git": 1 } ]
+}
