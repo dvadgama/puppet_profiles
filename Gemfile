@@ -11,4 +11,9 @@ group :development do
   gem 'guard-rake'
   gem 'guard-puppet'
   gem 'guard-puppet-lint'
+  gem 'beaker'
+  gem 'beaker-rspec'
+  gem 'pry'
+  gem 'spawn'
+  gem 'jwt', '~> 0.1.4'
 end

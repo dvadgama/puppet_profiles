@@ -1,0 +1,13 @@
+HOSTS:
+  ubuntu-1404-x64-master:
+    roles:
+      - foss_master_from_scretch
+    platform: ubuntu-1404-x86_64
+    hypervisor: vagrant
+    box: Ubuntu_14_10
+    box_url: https://cloud-images.ubuntu.com/vagrant/utopic/current/utopic-server-cloudimg-amd64-vagrant-disk1.box
+    ip: 192.168.1.60
+
+CONFIG:
+  log_level: verbose
+  type: foss
