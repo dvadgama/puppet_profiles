@@ -6,31 +6,6 @@ then
   exit 1
 fi
 
-case $1 in 
-
-"Redhat") echo "installing puppet3.x repo"
-            rpm -ivh http://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-5.noarch.rpm
-          echo "running update"
-             yum check-update
-          echo "Installing Puppet Clinet"
-            yum install -y puppet 
-          echo "Installing gem"
-            yum install -y rubygems
-          echo "Installing hiera"
-            yum install -y hiera
-            gem install deep_merge
-          echo "Installing git"
-            yum install -y git
-          ;;
-"Debian") echo "Installing Puppet Clinet"
-            apt-get install -y puppet 
-          echo "Installing git"
-            apt-get install -y git
-          ;;
-*) echo "please specify which OSfamily you wish to deploy"
-  ;;
-esac
-
 echo "Installing r10k"
  gem install r10k
 

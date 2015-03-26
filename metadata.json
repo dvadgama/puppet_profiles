@@ -1,0 +1,24 @@
+{
+  "name": "profiles",
+  "version": "0.0.1",
+  "author": "Dhaval Vadgama",
+  "license": "GNU GPL 2.0",
+  "summary": "A profiles moudle to install various moudles with proper config",
+  "source": "https://github.com/dvadgama/puppet_profiles",
+  "project_page": "https://github.com/dvadgama/puppet_profiles",
+  "issues_url": "https://github.com/dvadgama/puppet_profiles",
+  "tags": ["profiles"],
+  "operatingsystem_support": [
+    {
+    "operatingsystem":"RedHat",
+    "operatingsystemrelease":[ "5.0", "6.0" ]
+    },
+    {
+    "operatingsystem": "Ubuntu",
+    "operatingsystemrelease": [ "12.04", "14.04" ]
+    }
+   ],
+  "dependencies": [
+    { "name": "dvadgama/custom_moudle", "version_requirement": "latest" },
+  ]
+}

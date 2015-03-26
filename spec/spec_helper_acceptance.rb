@@ -1,4 +1,5 @@
 require 'beaker-rspec'
+require 'beaker-rspec/helpers/serverspec'
 require 'pry'
  
 hosts.each do |host|
@@ -7,16 +8,36 @@ hosts.each do |host|
 end
 
 RSpec.configure do | config |
-  module_path = File.expand_path(File.join(File.dirname(__FILE__),'../..'))
-  module_root = File.expand_path(File.join(File.dirname(__FILE__),'..'))
-  module_name = module_root.split('/').last
+  module_path = File.expand_path(File.join(File.dirname(__FILE__),'..'))
 
   config.formatter = :documentation
 
   config.before :suite do
-    #Install moudles
-    puppet_module_install(:source => "#{module_path}/#{module_name}", :module_name => module_name)
-    puppet_module_install(:source => "#{module_path}/custom", :module_name => 'custom')
-  end
+    hosts.each do | host |
+      if host['roles'].include?('foss_master_from_scretch')
+        master = host
+        config_file = {
+        'main' => {
+          'server'   => "#{master}.example.com",
+          'certname' => "#{master}.example.com",
+          'logdir'   => '/var/log/puppet',
+          'vardir'   => '/var/lib/puppet',
+          'ssldir'   => '/var/lib/puppet/ssl',
+          'rundir'   => '/var/run/puppet',
+          'environment' => 'master',
+          'environmentpath' => '$confdir/environments',
+        },
+        'agent' => {
+          'environment' => 'master',
+        }
+      }
 
-end
+      configure_puppet(host,config_file)
+      on host,"service puppet restart"    
+      scp_to host, "#{module_path}/spec/puppetmaster.sh",'/tmp/'
+      on host,"/tmp/puppetmaster.sh"
+
+      end #if
+    end #host.ech
+  end #config.before
+end # rspec.configure
