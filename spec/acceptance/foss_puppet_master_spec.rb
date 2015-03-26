@@ -1,8 +1,8 @@
 require 'spec_helper_acceptance'
 
-context "Apply puppet master profiles/roles" do
-  
-  describe '::profiles::puppet::hiera' do
+describe "Apply puppet master profiles/roles" do
+
+  context '::profiles::puppet::hiera' do
 
     it 'should apply the hiera config' do
       expect(shell('puppet apply --environment=master --environmentpath=/etc/puppet/environments -e "include ::profiles::puppet::hiera"').exit_code).to be_zero
@@ -14,20 +14,20 @@ context "Apply puppet master profiles/roles" do
 
   end
 
-  describe '::roles::puppet::master' do
+  context '::roles::puppet::master' do
 
     it 'should apply puppet master role' do
-      expect(shell('puppet apply --environment=master --environmetpath=/etc/puppet/environments -e "include ::riles::puppet::master"')).to be_zero
+      expect(shell('puppet apply --environment=master --environmentpath=/etc/puppet/environments -e " include roles::puppet::master"').exit_code).to be_zero
     end
 
     it 'should apply puppet master role ONLY ONCE' do
-      expect(shell('puppet apply --environment=master --environmetpath=/etc/puppet/environments -e "include ::riles::puppet::master"')).to be_zero
+      expect(shell('puppet apply --environment=master --environmentpath=/etc/puppet/environments -e " include roles::puppet::master"').exit_code).to be_zero
     end
   end
 
 end
 
-context "Check installed packages" do
+describe "Check installed packages" do
 
   case fact('osfamily')
     when /debian/i,/ubuntu/i
@@ -53,13 +53,13 @@ context "Check installed packages" do
 
 end
 
-context "Check running services" do
+describe "Check running services" do
 
-   describe process('puppet') do
+   describe process('puppet agent') do
      it { should be_running }
    end  
 
-   describe process('puppetmaster') do
+   describe process('puppet master') do
      it { should be_running }
    end
 end
